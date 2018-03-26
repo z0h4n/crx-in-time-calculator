@@ -1,0 +1,47 @@
+#itc_wrapper {
+  background-color: darkgray;
+  font-family: monospace;
+  margin-bottom: 10px;
+}
+
+#itc_wrapper .sys_clock {
+  background-color: lightgray;
+  color: dimgray;
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin: 0px 5px 10px 10px;
+  padding: 10px;
+  border: 2px solid;
+}
+
+#itc_wrapper .swipe_data {
+  margin: 10px 10px 10px 5px;
+  padding: 10px;
+  background-color: lightgray;
+  color: dimgray;
+  border-radius: 5px;
+  height: 162px;
+  box-sizing: border-box;
+  border: 2px solid;
+  overflow-y: scroll;
+}
+
+#itc_wrapper .swipe_data table {
+  width: 100%;
+}
+
+#itc_wrapper .swipe_data .dirty td {
+  background-color: red;
+  color: white;
+}
+
+#itc_wrapper .total_time {
+  background: bisque;
+  margin: 10px 5px 10px 10px;
+  padding: 30px;
+  border-radius: 5px;
+  border: 2px solid;
+  color: chocolate;
+  text-align: center;
+  text-shadow: none;
+}

@@ -1,0 +1,28 @@
+{
+  "manifest_version": 2,
+  "name": "In Time Calculator",
+  "description": "Calculate your actual In Time Office hours on <your_company>.greythr.com",
+  "version": "1.0",
+  "content_scripts": [
+    {
+      "exclude_matches": [
+        "https://mitr.greythr.com/login.do*"
+      ],
+      "matches": [
+        "https://mitr.greythr.com/*"
+      ],
+      "js": [
+        "jquery-3.3.1.min.js",
+        "xhrHook.js",
+        "html.js",
+        "calc.js"
+      ],
+      "css": [
+        "style.css"
+      ]
+    }
+  ],
+  "permissions": [
+    "activeTab"
+  ]
+}
