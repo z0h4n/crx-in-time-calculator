@@ -2,7 +2,6 @@
   const manifest = chrome.runtime.getManifest();
 
   const html = `
-    <div class="update">A new release is available. <a href="https://github.com/z0h4n/crx-in-time-calculator/releases" target="_blank">Click here to download the latest release.</a></div>
     <div style="display: table; width: 100%;">
       <div style="display: table-cell; width: 50%; vertical-align: top;">
         <h1 class="total_time">00:00:00</h1>
