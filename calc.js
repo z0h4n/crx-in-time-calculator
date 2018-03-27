@@ -1,5 +1,8 @@
 (function () {
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const $total_time = $('#itc_wrapper').find('.total_time');
   let swipeData = [];
+  let lastswipe = null;
   let totaltime1 = 0;
   let totaltime2 = 0;
 
@@ -42,7 +45,11 @@
 
   const TimeUtil = {
     hrsToMsecs: function (hrs) {
-      return hrs * 1000 * 60 * 60;
+      return hrs * 60 * 60 * 1000;
+    },
+
+    minsToMsecs: function (mins) {
+      return mins * 60 * 1000;
     },
 
     zeroFill: function (val) {
@@ -96,12 +103,25 @@
       }
 
       $($table).append($tr);
+
+      $($chkbox).off().on('change', checkboxClick);
     });
+  }
+
+  function cellData(html) {
+    const $td = $('<td/>');
+    return $td.append(html);
+  }
+
+  function checkboxClick() {
+    swipeData[$(this).data('index')].checked = this.checked;
+    calculate1();
   }
 
   function calculate1() {
     totaltime1 = 0;
     totaltime2 = 0;
+    lastswipe = null;
 
     for (let i = 0, imax = swipeData.length; i < imax; i += 1) {
       const swipe = swipeData[i];
@@ -122,20 +142,50 @@
     for (let i = swipeData.length - 1; i >= 0; i -= 1) {
       const swipe = swipeData[i];
       const datestring = (new Date()).toDateString();
-      if (swipe.checked && swipe.inoutindicator === 1 && swipe.datestring === datestring) {
-        totaltime2 = totaltime1 + (Date.now() - swipe.dateobject.getTime())
+      if (swipe.checked) {
+        if (swipe.inoutindicator === 1) {
+          lastswipe = Object.assign({}, swipe);
+          totaltime2 = totaltime1 + (Date.now() - swipe.dateobject.getTime())
+        }
         break;
       }
     }
 
-    console.log(totaltime1, TimeUtil.msecsToTimeString(totaltime1));
-    console.log(totaltime2, TimeUtil.msecsToTimeString(totaltime2));
+    calculate2();
   }
 
-  function cellData(html) {
-    const $td = $('<td/>');
-    return $td.append(html);
+  function calculate2() {
+    if (lastswipe) {
+      totaltime2 = totaltime1 + (Date.now() - lastswipe.dateobject.getTime());
+    }
+    updateDisplay();
   }
 
+  function updateDisplay() {
+    $($total_time).text(TimeUtil.msecsToTimeString(totaltime2));
+  }
+
+  function initXHR() {
+    const initxhr = new XMLHttpRequest();
+    const datetoday = new Date();
+    const geturl = `https://mitr.greythr.com/v2/attendance/info/loadDaywiseAttendanceData?attDate=${datetoday.getDate()}+${months[datetoday.getMonth()]}+${datetoday.getFullYear()}&startDate=01+${months[datetoday.getMonth()]}+${datetoday.getFullYear()}&_=${Date.now()}`;
+
+    initxhr.open('GET', geturl);
+    initxhr.setRequestHeader('Accept', 'application/json');
+    initxhr.setRequestHeader('Accept', 'text/javascript');
+
+    initxhr.onreadystatechange = function () {
+      if (this.readyState === 4 && this.status === 200) {
+        const event = new CustomEvent('attendanceData', { detail: { response: JSON.parse(this.responseText) } });
+        document.dispatchEvent(event);
+      }
+    }
+
+    initxhr.send();
+  }
+
+  initXHR();
+
+  Ticker.subscribe(calculate2);
   Ticker.start();
 }());

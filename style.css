@@ -1,17 +1,9 @@
 #itc_wrapper {
+  position: relative;
   background-color: darkgray;
   font-family: monospace;
   margin-bottom: 10px;
-}
-
-#itc_wrapper .sys_clock {
-  background-color: lightgray;
-  color: dimgray;
-  border-radius: 5px;
-  box-sizing: border-box;
-  margin: 0px 5px 10px 10px;
-  padding: 10px;
-  border: 2px solid;
+  user-select: none;
 }
 
 #itc_wrapper .swipe_data {
@@ -20,7 +12,7 @@
   background-color: lightgray;
   color: dimgray;
   border-radius: 5px;
-  height: 162px;
+  height: 122px;
   box-sizing: border-box;
   border: 2px solid;
   overflow-y: scroll;
@@ -30,18 +22,23 @@
   width: 100%;
 }
 
-#itc_wrapper .swipe_data .dirty td {
-  background-color: red;
+#itc_wrapper .swipe_data tr:nth-child(odd) > td {
+  background-color: gainsboro;
+}
+
+#itc_wrapper .swipe_data .dirty > td {
+  background-color: red !important;
   color: white;
 }
 
 #itc_wrapper .total_time {
   background: bisque;
   margin: 10px 5px 10px 10px;
-  padding: 30px;
+  padding: 41px;
   border-radius: 5px;
   border: 2px solid;
   color: chocolate;
   text-align: center;
   text-shadow: none;
+  font-size: 6em;
 }
