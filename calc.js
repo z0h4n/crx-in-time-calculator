@@ -184,7 +184,26 @@
     initxhr.send();
   }
 
+  function checkNewVersion() {
+    const current_manifest = chrome.runtime.getManifest();
+    const updatexhr = new XMLHttpRequest();
+
+    updatexhr.open('GET', 'https://raw.githubusercontent.com/z0h4n/crx-in-time-calculator/master/manifest.json');
+
+    updatexhr.onreadystatechange = function () {
+      if (this.readyState === 4 && this.status === 200) {
+        const latest_manifest = JSON.parse(this.responseText);
+        if (current_manifest.version !== latest_manifest.version) {
+          $('#itc_wrapper').find('.update').show();
+        }
+      }
+    }
+
+    updatexhr.send();
+  }
+
   initXHR();
+  checkNewVersion();
 
   Ticker.subscribe(calculate2);
   Ticker.start();

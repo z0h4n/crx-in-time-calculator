@@ -42,3 +42,24 @@
   text-shadow: none;
   font-size: 6em;
 }
+
+#itc_wrapper .update {
+  display: none;
+  padding: 10px;
+  text-align: center;
+  color: cyan;
+  background-color: black;
+}
+
+#itc_wrapper .update a {
+  color: white;
+}
+
+#itc_wrapper .source {
+  text-align: right;
+  padding: 0px 10px 10px 0px;
+}
+
+#itc_wrapper .source a {
+  color: white;
+}
