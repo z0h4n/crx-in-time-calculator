@@ -98,7 +98,7 @@
       $($tr).append(cellData(swipe.doorname));
       $($tr).append(cellData(swipe.dateobject.toString()));
 
-      if (swipe.dirtyflag) {
+      if (swipe.dirtyflag || (i !== 0 && swipe.inoutindicator === swipeData[i - 1].inoutindicator)) {
         $($tr).addClass('dirty');
       }
 
@@ -129,8 +129,10 @@
       if (swipe.checked && swipe.inoutindicator === 0) {
         for (let j = i - 1; j >= 0; j -= 1) {
           const swipe2 = swipeData[j];
-          if (swipe2 && swipe2.checked && swipe2.inoutindicator === 1) {
-            totaltime1 += swipe.dateobject.getTime() - swipe2.dateobject.getTime();
+          if (swipe2 && swipe2.checked) {
+            if (swipe2.inoutindicator === 1) {
+              totaltime1 += swipe.dateobject.getTime() - swipe2.dateobject.getTime();
+            }
             break;
           }
         }

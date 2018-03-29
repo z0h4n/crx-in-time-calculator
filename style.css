@@ -9,8 +9,8 @@
 #itc_wrapper .swipe_data {
   margin: 10px 10px 10px 5px;
   padding: 10px;
-  background-color: lightgray;
-  color: dimgray;
+  background-color: slategrey;
+  color: azure;
   border-radius: 5px;
   height: 122px;
   box-sizing: border-box;
@@ -23,21 +23,21 @@
 }
 
 #itc_wrapper .swipe_data tr:nth-child(odd) > td {
-  background-color: gainsboro;
+  background-color: lightslategray;
 }
 
 #itc_wrapper .swipe_data .dirty > td {
   background-color: red !important;
-  color: white;
+  color: white !important;
 }
 
 #itc_wrapper .total_time {
-  background: bisque;
+  background-color: slategrey;
   margin: 10px 5px 10px 10px;
   padding: 41px;
   border-radius: 5px;
   border: 2px solid;
-  color: chocolate;
+  color: azure;
   text-align: center;
   text-shadow: none;
   font-size: 6em;
