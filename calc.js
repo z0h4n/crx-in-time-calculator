@@ -67,7 +67,7 @@
 
   document.addEventListener('attendanceData', function (e) {
     const date = new Date(e.detail.response.attendanceData[0].attendancedate);
-    $('#itc_wrapper').find('.swipe_data .date').text(date.toDateString());
+    $('#itc_wrapper').find('.swipe_data .date').html(date.toDateString());
 
     swipeData = e.detail.response.swipeData;
     swipeData.forEach(function (swipe) {
@@ -86,6 +86,8 @@
 
   function populateTable() {
     const $table = $('#itc_wrapper').find('.swipe_data table');
+    let errors = 0;
+
     $table.find('tr').remove();
 
     swipeData.forEach(function (swipe, i) {
@@ -99,9 +101,11 @@
       $($tr).append(cellData(swipe.dateobject.toString()));
 
       if (swipe.dirtyflag) {
+        errors += 1;
         $($tr).append(cellData('System Generated'));
         $($tr).addClass('dirty');
       } else if (i !== 0 && swipe.inoutindicator === swipeData[i - 1].inoutindicator) {
+        errors += 1;
         $($tr).append(cellData('Improper Sequence'));
         $($tr).addClass('dirty');
       } else {
@@ -112,6 +116,11 @@
 
       $($chkbox).off().on('change', checkboxClick);
     });
+
+    if (errors) {
+      const $err_span = $('<span/>').addClass('error_count').text(`${errors} error${errors > 1 ? 's' : ''}`);
+      $('#itc_wrapper').find('.swipe_data .date').append($err_span);
+    }
   }
 
   function cellData(html) {
