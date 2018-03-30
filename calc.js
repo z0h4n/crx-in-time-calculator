@@ -98,8 +98,14 @@
       $($tr).append(cellData(swipe.doorname));
       $($tr).append(cellData(swipe.dateobject.toString()));
 
-      if (swipe.dirtyflag || (i !== 0 && swipe.inoutindicator === swipeData[i - 1].inoutindicator)) {
+      if (swipe.dirtyflag) {
+        $($tr).append(cellData('System Generated'));
         $($tr).addClass('dirty');
+      } else if (i !== 0 && swipe.inoutindicator === swipeData[i - 1].inoutindicator) {
+        $($tr).append(cellData('Improper Sequence'));
+        $($tr).addClass('dirty');
+      } else {
+        $($tr).append(cellData(''));
       }
 
       $($table).append($tr);
