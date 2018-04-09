@@ -93,12 +93,14 @@
     swipeData.forEach(function (swipe, i) {
       const $tr = $('<tr/>');
       const $chkbox = $('<input/>').prop({ type: 'checkbox', checked: true }).data('index', i);
+      const swipe_time = swipe.dateobject.toLocaleTimeString().split(':');
+      swipe_time[0] = TimeUtil.zeroFill(swipe_time[0]);
 
       $($tr).append(cellData(i + 1));
       $($tr).append(cellData($chkbox));
       $($tr).append(cellData(swipe.inoutindicator === 1 ? 'In' : 'Out'));
       $($tr).append(cellData(swipe.doorname));
-      $($tr).append(cellData(swipe.dateobject.toString()));
+      $($tr).append(cellData(swipe_time.join(':')));
 
       if (swipe.dirtyflag) {
         errors += 1;
@@ -124,8 +126,7 @@
   }
 
   function cellData(html) {
-    const $td = $('<td/>');
-    return $td.append(html);
+    return $('<td/>').append(html).css('padding', '5px 10px 5px 10px');
   }
 
   function checkboxClick() {

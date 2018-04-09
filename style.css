@@ -19,7 +19,7 @@
 }
 
 #itc_wrapper .swipe_data table {
-  width: 100%;
+  max-width: 100%;
 }
 
 #itc_wrapper .swipe_data tr:nth-child(odd) > td {
