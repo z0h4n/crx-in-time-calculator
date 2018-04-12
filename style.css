@@ -31,6 +31,16 @@
   color: white !important;
 }
 
+.wrapper-focus {
+  position: absolute;
+  background-color: lime;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
 .error_count {
   background-color: indianred;
   color: white;
@@ -55,6 +65,7 @@
 #itc_wrapper .source {
   text-align: right;
   padding: 0px 10px 10px 0px;
+  position: relative;
 }
 
 #itc_wrapper .source a {

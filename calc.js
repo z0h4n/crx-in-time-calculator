@@ -77,6 +77,7 @@
     });
 
     swipeDataReceived();
+    wrapperFocus();
   });
 
   function swipeDataReceived() {
@@ -201,6 +202,22 @@
 
     initxhr.send();
   }
+
+  function wrapperFocus() {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    $('#itc_wrapper').find('.wrapper-focus').stop().css('opacity', 1).animate({ 'opacity': 0 }, 1000);
+  }
+
+  chrome.runtime.onMessage.addListener(function (message) {
+    switch (message.action) {
+      case 'focus':
+        wrapperFocus();
+        break;
+
+      default:
+        console.error(`Unhandled message action : ${message.action}`)
+    }
+  });
 
   initXHR();
 

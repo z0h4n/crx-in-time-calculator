@@ -2,7 +2,8 @@
   const manifest = chrome.runtime.getManifest();
 
   const html = `
-    <div style="display: table; width: 100%;">
+    <div class="wrapper-focus"></div>
+    <div style="display: table; width: 100%; position: relative;">
       <div style="display: table-cell; width: 50%; vertical-align: top;">
         <h1 class="total_time">00:00:00</h1>
       </div>
