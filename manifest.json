@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Greythr - In Time Calculator",
   "description": "Calculate your actual In Time Office hours on <your_company>.greythr.com",
-  "version": "1.7",
+  "version": "1.8",
   "background": {
     "scripts": [
       "eventPage.js"
@@ -30,8 +30,7 @@
     }
   ],
   "permissions": [
-    "activeTab",
-    "tabs"
+    "activeTab"
   ],
   "icons": {
     "16": "icon/16.png",

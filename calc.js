@@ -208,16 +208,19 @@
     $('#itc_wrapper').find('.wrapper-focus').stop().css('opacity', 1).animate({ 'opacity': 0 }, 1000);
   }
 
+
   chrome.runtime.onMessage.addListener(function (message) {
-    switch (message.action) {
+    switch (message) {
       case 'focus':
         wrapperFocus();
         break;
 
       default:
-        console.error(`Unhandled message action : ${message.action}`)
+        console.error(`Unhandled message action : ${message}`)
     }
   });
+
+  chrome.runtime.sendMessage('activate extension');
 
   initXHR();
 
