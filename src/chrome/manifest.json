@@ -2,10 +2,10 @@
   "manifest_version": 2,
   "name": "Greythr - In Time Calculator",
   "description": "Calculate your actual In Time Office hours on <your_company>.greythr.com",
-  "version": "1.8",
+  "version": "2.0",
   "background": {
     "scripts": [
-      "eventPage.js"
+      "background.js"
     ],
     "persistent": false
   },
@@ -19,30 +19,29 @@
         "https://*.greythr.com/*"
       ],
       "js": [
-        "jquery-3.3.1.min.js",
-        "xhrHook.js",
-        "html.js",
-        "calc.js"
+        "app.js"
       ],
-      "css": [
-        "style.css"
-      ]
+      "all_frames": true
     }
   ],
   "permissions": [
     "activeTab"
   ],
+  "web_accessible_resources": [
+    "css/*",
+    "fonts/*"
+  ],
   "icons": {
-    "16": "icon/16.png",
-    "24": "icon/24.png",
-    "32": "icon/32.png",
-    "128": "icon/128.png"
+    "16": "16.png",
+    "24": "24.png",
+    "32": "32.png",
+    "128": "128.png"
   },
   "page_action": {
     "default_icon": {
-      "16": "icon/16.png",
-      "24": "icon/24.png",
-      "32": "icon/32.png"
+      "16": "16.png",
+      "24": "24.png",
+      "32": "32.png"
     }
   }
 }

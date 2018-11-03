@@ -1,0 +1,35 @@
+{
+  "name": "crx-in-time-calculator",
+  "version": "2.0.0",
+  "description": "Vue based Google Chrome Extension for <company_name_goes_here>.greythr.com for calculating office hours in realtime",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack --config webpack.config.js --progress --mode development --watch",
+    "build": "webpack --config webpack.config.js --progress --mode production"
+  },
+  "author": "Mazhar Shaikh (z0h4n)",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "babel-loader": "^8.0.4",
+    "clean-webpack-plugin": "^0.1.19",
+    "copy-webpack-plugin": "^4.5.2",
+    "css-loader": "^1.0.0",
+    "file-loader": "^2.0.0",
+    "mini-css-extract-plugin": "^0.4.4",
+    "style-loader": "^0.23.1",
+    "vue-loader": "^15.4.2",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.5.17",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2"
+  },
+  "dependencies": {
+    "buefy": "^0.7.0",
+    "lodash.get": "^4.4.2",
+    "vue": "^2.5.17",
+    "vue-seven-segment-display": "^1.1.0",
+    "vuex": "^3.0.1"
+  }
+}
