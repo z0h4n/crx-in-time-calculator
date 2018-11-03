@@ -3,7 +3,7 @@
 
 # In Time Calculator for [greytHR](https://www.greythr.com/) - A Google Chrome Extension
 
-If your company uses [greytHR](https://www.greythr.com/) to track your attendace, then this extension will help you calculate your total in-time hours, without the need for manually adding an Out-In swipe.
+If your company uses [greytHR](https://www.greythr.com/) to track your attendace, then this extension will help you calculate your office hours in realtime, without the need for manually adding an Out-In swipe.
 
 #### How to use
 - [Install the extension](https://chrome.google.com/webstore/detail/greythr-in-time-calculato/pibjjcefimcnabkdhabbbeknndpjedgd?hl=en-US)
