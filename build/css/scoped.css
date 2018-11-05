@@ -1,0 +1,106 @@
+
+.seperator-container[data-v-31cf4b99] {
+  width: 10px;
+}
+.seperator-dot[data-v-31cf4b99] {
+  width: 100%;
+  height: 10px;
+  border-radius: 50%;
+  background-color: hsl(0, 0%, 21%);
+}
+.gap[data-v-31cf4b99] {
+  width: 100%;
+  height: 30px;
+}
+
+
+.padding-left-10[data-v-ec15a350] {
+  padding-left: 10px;
+}
+
+
+@media only screen and (max-width: 1000px) {
+.button[data-v-67b31fee] {
+    margin-bottom: 10px;
+}
+}
+.errors[data-v-67b31fee] {
+  margin-left: 10px;
+}
+
+
+.button[data-v-a9fb20ec] {
+  margin-top: 10px;
+}
+.grid-container[data-v-a9fb20ec] {
+  display: grid;
+  grid-template-columns: max-content auto;
+  grid-gap: 10px;
+}
+.vertical-align-middle[data-v-a9fb20ec] {
+  vertical-align: middle;
+}
+
+
+@media only screen and (max-width: 1000px) {
+.app-root[data-v-03e18044] .grid-container-main {
+    grid-template-columns: 100%;
+    height: auto;
+}
+}
+.app-root[data-v-03e18044] {
+  position: relative;
+}
+.grid-container-main[data-v-03e18044] {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-gap: 10px;
+  padding: 10px;
+  height: 200px;
+}
+.grid-container-left[data-v-03e18044] {
+  display: grid;
+  grid-template-columns: auto;
+  grid-gap: 10px;
+}
+.grid-container-right[data-v-03e18044] {
+  overflow: auto;
+}
+.app-toggle[data-v-03e18044] {
+  padding-top: 3px;
+  cursor: pointer;
+}
+
+
+.segment-endpoint[data-v-5c204803] {
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-color: inherit;
+  border-style: solid;
+}
+.is-on-left[data-v-5c204803] {
+  right: 100%;
+  border-left-color: transparent !important;
+  border-top-color: transparent !important;
+  border-bottom-color: transparent !important;
+}
+.is-on-right[data-v-5c204803] {
+  left: 100%;
+  border-right-color: transparent !important;
+  border-top-color: transparent !important;
+  border-bottom-color: transparent !important;
+}
+.is-on-top[data-v-5c204803] {
+  bottom: 100%;
+  border-left-color: transparent !important;
+  border-right-color: transparent !important;
+  border-top-color: transparent !important;
+}
+.is-on-bottom[data-v-5c204803] {
+  top: 100%;
+  border-left-color: transparent !important;
+  border-right-color: transparent !important;
+  border-bottom-color: transparent !important;
+}
+
