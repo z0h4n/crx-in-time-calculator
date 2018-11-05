@@ -3,6 +3,7 @@ import App from 'Components/App.vue';
 import store from 'Services/store';
 import Buefy from 'buefy';
 import SevenSegmentDisplay from 'vue-seven-segment-display';
+import styleLoader from 'Services/styleLoader';
 
 if (typeof document.head.attachShadow !== 'function') {
   alert('ITC Extension now uses Shadow DOM. Please update your Google Chrome Browser to latest version.');
@@ -13,23 +14,6 @@ if (typeof document.head.attachShadow !== 'function') {
 const topNav = document.body.children[0];
 topNav.style.position = 'relative';
 topNav.style.zIndex = 0;
-
-// Material Design Icon CSS
-const materialIconCSS = document.createElement('link');
-materialIconCSS.setAttribute('rel', 'stylesheet');
-materialIconCSS.setAttribute('href', chrome.runtime.getURL('css/materialdesignicons.css'));
-document.head.appendChild(materialIconCSS);
-
-// Extension template
-const template = document.createElement('template');
-template.innerHTML = `
-  <link rel="stylesheet" href="${materialIconCSS.getAttribute('href')}">
-  <link rel="stylesheet" href="${chrome.runtime.getURL('css/buefy.min.css')}">
-  <link rel="stylesheet" href="${chrome.runtime.getURL('css/override.css')}">
-  <link rel="stylesheet" href="${chrome.runtime.getURL('css/global.css')}">
-  <link rel="stylesheet" href="${chrome.runtime.getURL('css/scoped.css')}">
-  <div id="appRoot"></div>
-`;
 
 // Create and prepend our shadow host
 const shadowHost = document.createElement('div');
@@ -42,27 +26,46 @@ document.body.prepend(shadowHost);
 
 // Add shadow dom to our shadow host and append template content
 const shadowRoot = shadowHost.attachShadow({ mode: 'closed' });
-shadowRoot.append(template.content);
 
-// Setup Vue
-Vue.use(Buefy);
-Vue.use(SevenSegmentDisplay);
+// Create App Root
+const appRoot = document.createElement('div');
+appRoot.innerText = 'Loading...';
+shadowRoot.appendChild(appRoot);
 
-// Load our app in app root
-new Vue({
-  store,
-  el: shadowRoot.querySelector('#appRoot'),
+// Preload All CSS
+const outerMaterialIconCSS = styleLoader(chrome.runtime.getURL('css/materialdesignicons.css'), document.head);
 
-  data() {
-    return {
-      shadowHost,
-      shadowRoot
+const innerCSSList = [
+  'css/materialdesignicons.css',
+  'css/buefy.min.css',
+  'css/override.css',
+  'css/global.css',
+  'css/scoped.css'
+].map(css => styleLoader(chrome.runtime.getURL(css), shadowRoot));
+
+Promise.all([outerMaterialIconCSS, ...innerCSSList]).then(() => {
+  // Setup Vue
+  Vue.use(Buefy);
+  Vue.use(SevenSegmentDisplay);
+
+  // Render our App
+  new Vue({
+    store,
+    el: appRoot,
+
+    data() {
+      return {
+        shadowHost,
+        shadowRoot
+      }
+    },
+
+    render: function (createElement) {
+      return createElement(App);
     }
-  },
-
-  render: function (createElement) {
-    return createElement(App);
-  }
+  });
+}).catch(() => {
+  appRoot.innerText = 'Error loading styles';
 });
 
 chrome.runtime.sendMessage('activate extension');
