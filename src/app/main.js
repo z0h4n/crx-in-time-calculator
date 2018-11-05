@@ -13,7 +13,6 @@ if (typeof document.head.attachShadow !== 'function') {
 // Make top nav of webpage unsticky
 const topNav = document.body.children[0];
 topNav.style.position = 'relative';
-topNav.style.zIndex = 0;
 
 // Create and prepend our shadow host
 const shadowHost = document.createElement('div');
