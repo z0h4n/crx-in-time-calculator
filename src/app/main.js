@@ -67,4 +67,4 @@ Promise.all([outerMaterialIconCSS, ...innerCSSList]).then(() => {
   appRoot.innerText = 'Error loading styles';
 });
 
-chrome.runtime.sendMessage('activate extension');
+chrome.runtime.sendMessage('activate');
