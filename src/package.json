@@ -4,8 +4,8 @@
   "description": "Vue based Google Chrome Extension for <company_name_goes_here>.greythr.com for calculating office hours in realtime",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --config webpack.config.js --progress --mode development --watch",
-    "build": "webpack --config webpack.config.js --progress --mode production"
+    "dev": "webpack --progress --mode development --watch",
+    "build": "webpack --progress --mode production"
   },
   "author": "Mazhar Shaikh (z0h4n)",
   "license": "ISC",
