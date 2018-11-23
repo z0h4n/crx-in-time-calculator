@@ -13,6 +13,11 @@
             props.index + 1
           }}
         </b-table-column>
+        <b-table-column field="punchdatetime" label="Date">
+          {{
+            props.row.dateObject.toLocaleDateString()
+          }}
+        </b-table-column>
         <b-table-column field="punchdatetime" label="Time">
           {{
             toFixed2(props.row.dateObject.toLocaleTimeString())

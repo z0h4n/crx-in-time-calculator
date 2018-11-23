@@ -1,6 +1,7 @@
 <template>
   <div class="app-root">
     <div v-show="appVisible">
+        <Navbar />
         <div class="grid-container-main">
         <div class="grid-container-left">
           <DatePicker/>
@@ -30,10 +31,12 @@ import Swipes from "Components/Swipes.vue";
 import TimeDisplay from "Components/TimeDisplay.vue";
 import DatePicker from "Components/DatePicker.vue";
 import Sessions from "Components/Sessions.vue";
+import Navbar from "Components/Navbar.vue";
 import ticker from "Services/ticker";
 
 export default {
   components: {
+    Navbar,
     Sessions,
     Swipes,
     TimeDisplay,
