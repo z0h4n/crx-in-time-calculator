@@ -5,7 +5,7 @@ import Vuex from 'vuex';
 import lodashGet from 'lodash.get';
 import { getAttendaceForDate, extendSwipes, processSwipes, onTick } from 'Services/attendanceHelper';
 
-const SESSION_STORAGE_KEY = `chrome_extension_itc_${chrome.runtime.id}_sessions`;
+const SESSION_STORAGE_KEY = `chrome_extension_itc_sessions`;
 
 Vue.use(Vuex);
 
