@@ -16,7 +16,6 @@ topNav.style.position = 'relative';
 
 // Create and prepend our shadow host
 const shadowHost = document.createElement('div');
-shadowHost.style.backgroundColor = 'white';
 shadowHost.style.marginBottom = '10px';
 shadowHost.style.position = 'relative';
 shadowHost.style.zIndex = '9999';

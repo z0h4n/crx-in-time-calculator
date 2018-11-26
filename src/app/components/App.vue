@@ -1,5 +1,5 @@
 <template>
-  <div class="app-root">
+  <div class="app-root has-background-light">
     <Navbar :appVisible="appVisible"/>
     <div v-show="appVisible">
         <div class="grid-container-main">

@@ -1,15 +1,16 @@
 /* Override buefy's default css */
-/* :root {
-  --is-dark: hsl(0, 0%, 21%); 
-} */
+:host {
+  --is-light: hsl(0, 0%, 96%);
+  --is-dark: hsl(0, 0%, 21%);
+}
 
 a,
 .tabs li.is-active a {
-  color: hsl(0, 0%, 21%);
+  color: var(--is-dark);
 }
 
 .has-text-primary {
-  color: hsl(0, 0%, 21%) !important;
+  color: var(--is-dark) !important;
 }
 
 .datepicker .datepicker-table .datepicker-body .datepicker-row .datepicker-cell.is-today,
@@ -21,7 +22,7 @@ a,
 .select select.is-focused,
 .select select:active,
 .select select:focus {
-  border-color: hsl(0, 0%, 21%);
+  border-color: var(--is-dark);
 }
 
 .pagination-link:active,
@@ -34,7 +35,7 @@ a,
 }
 
 .datepicker .datepicker-table .datepicker-body .datepicker-row .datepicker-cell.is-selected {
-  background-color: hsl(0, 0%, 21%);
+  background-color: var(--is-dark);
 }
 
 .timepicker select {
@@ -59,5 +60,12 @@ a,
 }
 
 .tabs li.is-active a {
-  border-bottom-color: hsl(0, 0%, 21%);
+  border-bottom-color: var(--is-dark);
+}
+
+.table,
+.dropdown-content,
+select {
+  background-color: var(--is-light) !important;
+  color: var(--is-dark) !important;
 }
