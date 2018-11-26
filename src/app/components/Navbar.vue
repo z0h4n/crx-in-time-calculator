@@ -94,6 +94,5 @@ export default {
 .mini-time-display {
   display: flex;
   align-items: center;
-  margin-left: 5px;
 }
 </style>

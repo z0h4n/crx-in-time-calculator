@@ -1,5 +1,5 @@
 <template>
-  <div class="is-table has-margin-auto is-full-height">
+  <div class="time-display is-table has-margin-auto is-full-height">
     <div class="is-table-row">
       <template v-for="(value, i) in totalTimeAfterLastIn">
         <div :key="i" :class="['is-table-cell', 'is-vertically-centered']">
@@ -35,6 +35,12 @@ export default {
 </script>
 
 <style scoped>
+@media only screen and (max-width: 1000px) {
+  .time-display {
+    margin-top: 10px;
+  }
+}
+
 .padding-left-10 {
   padding-left: 10px;
 }

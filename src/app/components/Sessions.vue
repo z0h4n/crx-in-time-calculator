@@ -55,7 +55,7 @@ export default {
 
   computed: {
     sessions() {
-      return this.$store.state.sessions;
+      return this.$store.state.sessions.sort((a, b) => a - b);
     },
 
     inTime() {

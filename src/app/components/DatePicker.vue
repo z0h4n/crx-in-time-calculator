@@ -49,12 +49,6 @@ export default {
 </script>
 
 <style scoped>
-@media only screen and (max-width: 1000px) {
-  .button {
-    margin-bottom: 10px;
-  }
-}
-
 .errors {
   margin-left: 10px;
 }

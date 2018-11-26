@@ -94,7 +94,9 @@ const store = new Vuex.Store({
     },
 
     addSession({ state, commit }, session) {
-      commit('sessions', [session, ...state.sessions]);
+      if (!state.sessions.includes(session)) {
+        commit('sessions', [session, ...state.sessions]);
+      }
     },
 
     deleteSession({ state, commit }, index) {
