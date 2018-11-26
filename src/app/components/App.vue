@@ -1,7 +1,7 @@
 <template>
   <div class="app-root">
+    <Navbar :appVisible="appVisible"/>
     <div v-show="appVisible">
-        <Navbar />
         <div class="grid-container-main">
         <div class="grid-container-left">
           <DatePicker/>

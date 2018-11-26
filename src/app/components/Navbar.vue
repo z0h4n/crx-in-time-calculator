@@ -1,21 +1,46 @@
 <template>
-  <div class="has-background-dark">
-    <a class="button is-small is-dark" href="https://github.com/z0h4n/crx-in-time-calculator" target="_blank">Github</a>
-    <a v-if="isMITR" class="button is-small is-dark" v-on:click.stop="openLegacyVersion">MITR-ITC</a>
+  <div style="display: flex; justify-content: space-between; align-items: center;" class="has-background-dark">
+    <div style="display: flex;">
+      <div class="itc-brand" :style="{ backgroundImage: `url(${brandImage})` }" />
+      <div :style="{display: 'flex', visibility: appVisible ? 'hidden' : 'visible'}">
+        <DatePicker/>
+        <div class="mini-time-display has-text-light">{{timeDisplay}}</div>
+      </div>
+    </div>
+    <div style="display: flex;">
+      <a class="button is-small is-dark" href="https://github.com/z0h4n/crx-in-time-calculator" target="_blank">Github</a>
+      <a v-if="isMITR" class="button is-small is-dark" v-on:click.stop="openLegacyVersion">MITR-ITC</a>
+    </div>
   </div>
 </template>
 
 <script>
+import DatePicker from "Components/DatePicker.vue";
+import TimeDisplay from "Components/TimeDisplay.vue";
+import timeutilsMixin from "Mixins/timeutils";
+
 const OUT_IN = ["Out", "In"];
 
 export default {
+  components: { DatePicker, TimeDisplay },
+
+  mixins: [timeutilsMixin],
+
   data() {
     return {
       legacyWindow: null
     };
   },
 
+  props: ["appVisible"],
+
   computed: {
+    timeDisplay() {
+      return this.msecsToHHMMSS(this.$store.state.totalTimeAfterLastIn);
+    },
+    brandImage() {
+      return chrome.runtime.getURL("24.png");
+    },
     isMITR() {
       return window.location.hostname === "mitr.greythr.com";
     },
@@ -56,3 +81,18 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.itc-brand {
+  width: 24px;
+  margin: 0px 10px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.mini-time-display {
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+}
+</style>
