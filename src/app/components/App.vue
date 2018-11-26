@@ -19,7 +19,7 @@
         </div>
       </div>
     </div>
-    <div class="has-background-dark has-text-white has-text-centered app-toggle" @click="appVisible = !appVisible">
+    <div class="has-background-dark has-text-light has-text-centered app-toggle" @click="appVisible = !appVisible">
       <b-icon :icon="appVisible ? 'chevron-up' : 'chevron-down'" />
     </div>
     <b-loading :active="isLoading" :is-full-page="false"/>

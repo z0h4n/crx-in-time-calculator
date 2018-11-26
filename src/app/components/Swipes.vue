@@ -3,7 +3,7 @@
     <b-table
       v-if="swipedata.length"
       :data="swipedata"
-      :row-class="row => row.errorMsg && 'has-text-white has-background-danger'">
+      :row-class="row => row.errorMsg && 'has-text-light has-background-danger'">
       <template slot-scope="props">
         <b-table-column field="checked" label="">
           <b-checkbox :value="props.row.checked" size="is-small" type="is-dark" @input="checkBoxEvent(props.index, $event)"/>

@@ -10,7 +10,7 @@
       </b-field>
     </div>
     <div>
-      <b-table v-if="sessions.length" :data="sessions" :row-class="row => !remainingTimeMsecs(row) && 'has-background-success has-text-white'">
+      <b-table v-if="sessions.length" :data="sessions" :row-class="row => !remainingTimeMsecs(row) && 'has-background-success has-text-light'">
         <template slot-scope="props">
           <b-table-column field="time" label="Session" class="vertical-align-middle">
             {{
@@ -31,7 +31,7 @@
           </b-table-column>
 
           <b-table-column label="" class="has-text-right vertical-align-middle">
-            <a :class="['is-small', 'is-dark', !remainingTimeMsecs(props.row) ? 'has-text-white' : '']" @click="deleteSession(props.index)">
+            <a :class="['is-small', 'is-dark', !remainingTimeMsecs(props.row) ? 'has-text-light' : '']" @click="deleteSession(props.index)">
               <b-icon icon="delete-forever"/>
             </a>
           </b-table-column>
