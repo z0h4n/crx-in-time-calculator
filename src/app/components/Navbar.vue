@@ -1,7 +1,7 @@
 <template>
   <div style="display: flex; justify-content: space-between; align-items: center;" class="has-background-dark">
     <div style="display: flex;">
-      <div class="itc-brand" :style="{ backgroundImage: `url(${brandImage})` }" />
+      <div class="itc-brand" :style="{ backgroundImage: `url(${brandImage})` }" :title="version"/>
       <div :style="{display: 'flex', visibility: appVisible ? 'hidden' : 'visible'}">
         <DatePicker/>
         <div class="mini-time-display has-text-light">{{timeDisplay}}</div>
@@ -28,6 +28,7 @@ export default {
 
   data() {
     return {
+      version: `In-Time Calculator v${chrome.runtime.getManifest().version}`,
       legacyWindow: null
     };
   },
