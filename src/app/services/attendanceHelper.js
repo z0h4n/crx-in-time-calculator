@@ -1,3 +1,5 @@
+import urlGenerator from 'Services/urlGenerator';
+
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 const ERROR_MESSAGES = {
   systemGenerated: 'System generated',
@@ -7,9 +9,8 @@ const ERROR_MESSAGES = {
 function getAttendaceForDate(date = new Date()) {
   return new Promise(resolve => {
     const xhr = new XMLHttpRequest();
-    const geturl = `https://mitr.greythr.com/v2/attendance/info/loadDaywiseAttendanceData?attDate=${date.getDate()}+${MONTHS[date.getMonth()]}+${date.getFullYear()}&startDate=01+${MONTHS[date.getMonth()]}+${date.getFullYear()}&_=${Date.now()}`;
-
-    xhr.open('GET', geturl);
+    const targetURL = urlGenerator(date.getDate(), MONTHS[date.getMonth()], date.getFullYear());
+    xhr.open('GET', targetURL);
 
     xhr.setRequestHeader('Accept', 'application/json');
     xhr.setRequestHeader('Accept', 'text/javascript');

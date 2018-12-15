@@ -2,7 +2,7 @@
   <div class="app-root has-background-light">
     <Navbar :appVisible="appVisible"/>
     <div v-show="appVisible">
-        <div class="grid-container-main">
+      <div class="grid-container-main">
         <div class="grid-container-left">
           <DatePicker/>
           <TimeDisplay/>
@@ -19,8 +19,11 @@
         </div>
       </div>
     </div>
-    <div class="has-background-dark has-text-light has-text-centered app-toggle" @click="appVisible = !appVisible">
-      <b-icon :icon="appVisible ? 'chevron-up' : 'chevron-down'" />
+    <div
+      class="has-background-dark has-text-light has-text-centered app-toggle"
+      @click="appVisible = !appVisible"
+    >
+      <b-icon :icon="appVisible ? 'chevron-up' : 'chevron-down'"/>
     </div>
     <b-loading :active="isLoading" :is-full-page="false"/>
   </div>
@@ -90,6 +93,10 @@ export default {
   .app-root >>> .grid-container-main {
     grid-template-columns: 100%;
     height: auto;
+  }
+
+  .app-root >>> .grid-container-right {
+    height: 200px;
   }
 }
 
