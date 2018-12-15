@@ -12,3 +12,5 @@ If your company uses [greytHR](https://www.greythr.com/) to track your attendace
 
 #### Warning
 This extension uses your computer's clock for calculation. So make sure, your computer's clock is synchronized with the Punch/Swipe machine's clock to get accurate results.
+
+<p align="center"><a href="https://chrome.google.com/webstore/detail/greythr-in-time-calculato/pibjjcefimcnabkdhabbbeknndpjedgd?hl=en-US" target="_blank"><img src="src/chrome/screenshot.png"></a></p>
