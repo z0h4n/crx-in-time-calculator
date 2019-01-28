@@ -3,7 +3,16 @@
     <div class="is-table-row">
       <template v-for="(value, i) in totalTimeAfterLastIn">
         <div :key="i" :class="['is-table-cell', 'is-vertically-centered']">
-          <seven-segment v-if="value !== ':'" :class="i !== 0 ? 'padding-left-10' : ''" :key="i" :value="value" :on-color="onColor" :segment-width="40" :segment-height="10" :rounded="false"/>
+          <seven-segment
+            v-if="value !== ':'"
+            :class="i !== 0 ? 'padding-left-10' : ''"
+            :key="i"
+            :value="value"
+            :on-color="onColor"
+            :segment-width="40"
+            :segment-height="10"
+            :rounded="false"
+          />
           <TimeDisplaySeperator v-else class="padding-left-10" :key="i"/>
         </div>
       </template>
