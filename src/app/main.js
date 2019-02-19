@@ -11,15 +11,17 @@ if (typeof document.head.attachShadow !== 'function') {
 }
 
 // Make top nav of webpage unsticky
-const topNav = document.body.children[0];
-topNav.style.position = 'relative';
+const greythrTopNav = document.body.children[0];
+const greythrContainer = document.body.children[1];
+greythrTopNav.style.position = 'fixed';
 
 // Create and prepend our shadow host
 const shadowHost = document.createElement('div');
-shadowHost.style.marginBottom = '10px';
-shadowHost.style.position = 'relative';
+// shadowHost.style.marginBottom = '10px';
+shadowHost.style.position = 'fixed';
 shadowHost.style.zIndex = '9999';
-shadowHost.style.minWidth = '600px';
+shadowHost.style.minWidth = '100%';
+shadowHost.style.top = '0px';
 document.body.prepend(shadowHost);
 
 // Add shadow dom to our shadow host and append template content
@@ -54,7 +56,10 @@ Promise.all([outerMaterialIconCSS, ...innerCSSList]).then(() => {
     data() {
       return {
         shadowHost,
-        shadowRoot
+        shadowRoot,
+        greythrTopNav,
+        greythrContainer,
+        appVisible: true
       }
     },
 

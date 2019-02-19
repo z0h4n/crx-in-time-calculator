@@ -1,6 +1,6 @@
 <template>
-  <div class="app-root has-background-light">
-    <Navbar :appVisible="appVisible"/>
+  <div ref="app" class="app-root has-background-light">
+    <Navbar/>
     <div v-show="appVisible">
       <div class="grid-container-main">
         <div class="grid-container-left">
@@ -18,12 +18,7 @@
           </b-tabs>
         </div>
       </div>
-    </div>
-    <div
-      class="has-background-dark has-text-light has-text-centered app-toggle"
-      @click="appVisible = !appVisible"
-    >
-      <b-icon :icon="appVisible ? 'chevron-up' : 'chevron-down'"/>
+      <div class="footer has-background-dark is-paddingless"></div>
     </div>
     <b-loading :active="isLoading" :is-full-page="false"/>
   </div>
@@ -49,13 +44,15 @@ export default {
 
   data() {
     return {
-      activeTab: 0,
-      appVisible: true
+      activeTab: 0
     };
   },
 
   mounted() {
     this.$store.dispatch("update", { date: new Date(), init: true });
+
+    window.addEventListener("resize", this.onResize);
+    this.$nextTick(this.onResize);
   },
 
   computed: {
@@ -67,12 +64,22 @@ export default {
     },
     lastInSwipe() {
       return this.$store.state.lastInSwipe;
+    },
+    appVisible() {
+      return this.$root.appVisible;
     }
   },
 
   methods: {
     onTick() {
       this.$store.commit("totalTimeAfterLastIn");
+    },
+
+    onResize() {
+      this.$root.greythrTopNav.style.top = `${this.$refs.app.offsetHeight}px`;
+      this.$root.greythrContainer.style.marginTop = `${
+        this.$refs.app.offsetHeight
+      }px`;
     }
   },
 
@@ -83,6 +90,10 @@ export default {
       } else {
         ticker.unsubscribe(this.onTick);
       }
+    },
+
+    appVisible() {
+      this.$nextTick(this.onResize);
     }
   }
 };
@@ -125,5 +136,9 @@ export default {
 .app-toggle {
   padding-top: 3px;
   cursor: pointer;
+}
+
+.footer {
+  height: 20px;
 }
 </style>

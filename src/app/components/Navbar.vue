@@ -1,5 +1,8 @@
 <template>
-  <div style="display: flex; justify-content: space-between; align-items: center;" class="has-background-dark">
+  <div
+    style="display: flex; justify-content: space-between; align-items: center;"
+    class="has-background-dark"
+  >
     <div style="display: flex;">
       <div class="itc-brand" :style="{ backgroundImage: `url(${brandImage})` }" :title="version"/>
       <div :style="{display: 'flex', visibility: appVisible ? 'hidden' : 'visible'}">
@@ -8,8 +11,15 @@
       </div>
     </div>
     <div style="display: flex;">
-      <a class="button is-small is-dark" href="https://github.com/z0h4n/crx-in-time-calculator" target="_blank">Github</a>
+      <a
+        class="button is-small is-dark"
+        href="https://github.com/z0h4n/crx-in-time-calculator"
+        target="_blank"
+      >Github</a>
       <a v-if="isMITR" class="button is-small is-dark" v-on:click.stop="openLegacyVersion">MITR-ITC</a>
+      <a class="button is-small is-dark" @click="$root.appVisible = !$root.appVisible">
+        <b-icon :icon="appVisible ? 'chevron-up' : 'chevron-down'"/>
+      </a>
     </div>
   </div>
 </template>
@@ -33,8 +43,6 @@ export default {
     };
   },
 
-  props: ["appVisible"],
-
   computed: {
     timeDisplay() {
       return this.msecsToHHMMSS(this.$store.state.totalTimeAfterLastIn);
@@ -53,6 +61,9 @@ export default {
           }\t${swipe.doorname}`;
         })
         .join("\n");
+    },
+    appVisible() {
+      return this.$root.appVisible;
     }
   },
 
@@ -78,6 +89,10 @@ export default {
           );
         }
       }
+    },
+
+    handleAppVisibility() {
+      this.$root.appVisible = !this.$root.appVisible;
     }
   }
 };
