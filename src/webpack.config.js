@@ -49,7 +49,8 @@ module.exports = (env, argv) => {
       new CopyWebpackPlugin([
         { from: './chrome/*', to: path.resolve(__dirname, '..', 'build'), flatten: true },
         { from: './app/css', to: path.resolve(__dirname, '..', 'build/css') },
-        { from: './app/fonts', to: path.resolve(__dirname, '..', 'build/fonts') }
+        { from: './app/fonts', to: path.resolve(__dirname, '..', 'build/fonts') },
+        { from: './app/polyfill', to: path.resolve(__dirname, '..', 'build/polyfill') },
       ]),
       new VueLoaderPlugin(),
       new MiniCssExtractPlugin({
