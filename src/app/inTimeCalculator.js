@@ -18,6 +18,7 @@ class InTimeCalculator extends HTMLElement {
       position: 'fixed',
       minWidth: '100%',
       top: '0px',
+      zIndex: '1'
     };
 
     Object.keys(style).forEach(prop => this.style[prop] = style[prop]);

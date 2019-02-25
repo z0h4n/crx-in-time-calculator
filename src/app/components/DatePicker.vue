@@ -4,16 +4,27 @@
       <button class="button is-dark is-small" @click="isDatePickerActive = true">
         <span>
           {{
-            date.toDateString()
+          date.toDateString()
           }}
         </span>
-        <b-tag v-if="swipeErrorCount" class="errors" type="is-danger">{{swipeErrorCount}} swipe errors</b-tag>
+        <b-tag
+          v-if="swipeErrorCount"
+          class="errors"
+          type="is-danger"
+        >{{swipeErrorCount}} swipe errors</b-tag>
       </button>
     </div>
 
-    <b-modal :active.sync="isDatePickerActive" has-modal-card ref=modalWindow>
+    <b-modal :active.sync="isDatePickerActive" has-modal-card ref="modalWindow">
       <b-field class="is-inline-block">
-        <b-datepicker class="date-picker" v-model="date" :min-date="mindate" :max-date="maxdate" size="is-small" inline />
+        <b-datepicker
+          class="date-picker"
+          v-model="date"
+          :min-date="mindate"
+          :max-date="maxdate"
+          size="is-small"
+          inline
+        />
       </b-field>
     </b-modal>
   </div>
@@ -43,6 +54,14 @@ export default {
     },
     swipeErrorCount() {
       return this.$store.getters.swipeErrorCount;
+    }
+  },
+
+  watch: {
+    isDatePickerActive(isActive) {
+      this.$root.greythrTopNav.style.visibility = isActive
+        ? "hidden"
+        : "visible";
     }
   }
 };
