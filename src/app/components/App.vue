@@ -1,26 +1,31 @@
 <template>
   <div ref="app" class="app-root has-background-light">
-    <Navbar/>
+    <Navbar />
     <div v-show="appVisible">
       <div class="grid-container-main">
         <div class="grid-container-left">
-          <DatePicker/>
-          <TimeDisplay/>
+          <TimeDisplay />
         </div>
         <div class="grid-container-right">
-          <b-tabs v-model="activeTab">
-            <b-tab-item label="Swipes" icon="calendar-today">
-              <Swipes/>
+          <b-tabs v-model="activeTab" size="is-small">
+            <b-tab-item>
+              <template slot="header">
+                <span class="is-size-6">Swipes</span>
+              </template>
+              <Swipes />
             </b-tab-item>
-            <b-tab-item label="Sessions" icon="alarm-plus">
-              <Sessions/>
+            <b-tab-item>
+              <template slot="header">
+                <span class="is-size-6">Sessions</span>
+              </template>
+              <Sessions />
             </b-tab-item>
           </b-tabs>
         </div>
       </div>
       <div class="footer has-background-dark is-paddingless"></div>
     </div>
-    <b-loading :active="isLoading" :is-full-page="false"/>
+    <b-loading :active="isLoading" :is-full-page="false" />
   </div>
 </template>
 
@@ -66,7 +71,7 @@ export default {
       return this.$store.state.lastInSwipe;
     },
     appVisible() {
-      return this.$root.appVisible;
+      return this.$store.state.appVisible;
     }
   },
 
@@ -77,9 +82,7 @@ export default {
 
     onResize() {
       this.$root.greythrTopNav.style.top = `${this.$refs.app.offsetHeight}px`;
-      this.$root.greythrContainer.style.marginTop = `${
-        this.$refs.app.offsetHeight
-      }px`;
+      this.$root.greythrContainer.style.marginTop = `${this.$refs.app.offsetHeight}px`;
     }
   },
 
@@ -120,7 +123,7 @@ export default {
   grid-template-columns: 50% 50%;
   grid-gap: 10px;
   padding: 10px;
-  height: 200px;
+  height: 160px;
 }
 
 .grid-container-left {
@@ -139,6 +142,6 @@ export default {
 }
 
 .footer {
-  height: 20px;
+  height: 10px;
 }
 </style>

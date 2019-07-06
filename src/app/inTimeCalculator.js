@@ -62,7 +62,7 @@ class InTimeCalculator extends HTMLElement {
           el: appRoot,
 
           data() {
-            return { greythrTopNav, greythrContainer, appVisible: true }
+            return { greythrTopNav, greythrContainer }
           },
 
           render(createElement) {

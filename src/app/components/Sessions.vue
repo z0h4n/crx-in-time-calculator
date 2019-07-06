@@ -3,36 +3,47 @@
     <div>
       <b-field class="is-inline-block">
         <b-timepicker v-model="sessionTime" inline>
-          <button class="button is-dark is-small" :disabled="sessionTimeInMsecs === 0" @click="addSessionTime">
-            Add
-          </button>
+          <button
+            class="button is-dark is-small"
+            :disabled="sessionTimeInMsecs === 0"
+            @click="addSessionTime"
+          >Add</button>
         </b-timepicker>
       </b-field>
     </div>
     <div>
-      <b-table v-if="sessions.length" :data="sessions" :row-class="row => !remainingTimeMsecs(row) && 'has-background-success has-text-light'">
+      <b-table
+        v-if="sessions.length"
+        :data="sessions"
+        :row-class="row => !remainingTimeMsecs(row) && 'has-background-success has-text-light'"
+        striped
+        narrowed
+      >
         <template slot-scope="props">
           <b-table-column field="time" label="Session" class="vertical-align-middle">
             {{
-              msecsToHHMMSS(props.row)
+            msecsToHHMMSS(props.row)
             }}
           </b-table-column>
 
           <b-table-column label="Remaining" class="vertical-align-middle">
             {{
-              msecsToHHMMSS(remainingTimeMsecs(props.row))
+            msecsToHHMMSS(remainingTimeMsecs(props.row))
             }}
           </b-table-column>
 
           <b-table-column label="Completes On" class="vertical-align-middle">
             {{
-              toFixed2(new Date(remainingTimeMsecs(props.row + Date.now())).toLocaleTimeString())
+            new Date(remainingTimeMsecs(props.row + Date.now())) | hhmmss
             }}
           </b-table-column>
 
-          <b-table-column label="" class="has-text-right vertical-align-middle">
-            <a :class="['is-small', 'is-dark', !remainingTimeMsecs(props.row) ? 'has-text-light' : '']" @click="deleteSession(props.index)">
-              <b-icon icon="delete-forever"/>
+          <b-table-column label class="has-text-right vertical-align-middle">
+            <a
+              :class="['is-small', 'is-dark', !remainingTimeMsecs(props.row) ? 'has-text-light' : '']"
+              @click="deleteSession(props.index)"
+            >
+              <b-icon icon="delete-forever" />
             </a>
           </b-table-column>
         </template>
@@ -43,6 +54,7 @@
 
 <script>
 import timeutilsMixin from "Mixins/timeutils";
+import moment from "moment";
 
 export default {
   data() {
@@ -82,6 +94,12 @@ export default {
 
     deleteSession(index) {
       this.$store.dispatch("deleteSession", index);
+    }
+  },
+
+  filters: {
+    hhmmss(dateObject) {
+      return moment(dateObject).format("hh:mm:ss A");
     }
   }
 };

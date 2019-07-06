@@ -4,9 +4,9 @@
     class="has-background-dark"
   >
     <div style="display: flex;">
-      <div class="itc-brand" :style="{ backgroundImage: `url(${brandImage})` }" :title="version"/>
+      <div class="itc-brand" :style="{ backgroundImage: `url(${brandImage})` }" :title="version" />
+      <DatePicker />
       <div :style="{display: 'flex', visibility: appVisible ? 'hidden' : 'visible'}">
-        <DatePicker/>
         <div class="mini-time-display has-text-light">{{timeDisplay}}</div>
       </div>
     </div>
@@ -17,8 +17,8 @@
         target="_blank"
       >Github</a>
       <a v-if="isMITR" class="button is-small is-dark" v-on:click.stop="openLegacyVersion">MITR-ITC</a>
-      <a class="button is-small is-dark" @click="$root.appVisible = !$root.appVisible">
-        <b-icon :icon="appVisible ? 'chevron-up' : 'chevron-down'"/>
+      <a class="button is-small is-dark" @click="appVisible = !appVisible">
+        <b-icon :icon="appVisible ? 'chevron-up' : 'chevron-down'" />
       </a>
     </div>
   </div>
@@ -62,8 +62,13 @@ export default {
         })
         .join("\n");
     },
-    appVisible() {
-      return this.$root.appVisible;
+    appVisible: {
+      get() {
+        return this.$store.state.appVisible;
+      },
+      set(flag) {
+        this.$store.dispatch("setVisibility", flag);
+      }
     }
   },
 
@@ -89,10 +94,6 @@ export default {
           );
         }
       }
-    },
-
-    handleAppVisibility() {
-      this.$root.appVisible = !this.$root.appVisible;
     }
   }
 };

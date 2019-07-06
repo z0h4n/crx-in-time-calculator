@@ -5,22 +5,36 @@ import Vuex from 'vuex';
 import lodashGet from 'lodash.get';
 import { getAttendaceForDate, extendSwipes, processSwipes, onTick } from 'Services/attendanceHelper';
 
-const SESSION_STORAGE_KEY = `chrome_extension_itc_sessions`;
-
 Vue.use(Vuex);
 
-const store = new Vuex.Store({
-  state: {
-    inited: false,
-    isLoading: false,
-    swipes: [],
-    sessions: JSON.parse(localStorage.getItem(SESSION_STORAGE_KEY) || '[]'),
-    joinDate: null,
-    lastInSwipe: null,
-    totalTimeTillLastOut: 0,
-    totalTimeAfterLastIn: 0,
-    currentDate: new Date()
+const userData = Object.assign(
+  {
+    sessions: [],
+    appVisible: true
   },
+  JSON.parse(localStorage.getItem('itc_data') || '{}')
+);
+
+const saveUserData = () => {
+  localStorage.setItem('itc_data', JSON.stringify(userData));
+};
+
+const store = new Vuex.Store({
+  state: Object.assign(
+    {
+      inited: false,
+      isLoading: false,
+      swipes: [],
+      sessions: [],
+      appVisible: true,
+      joinDate: null,
+      lastInSwipe: null,
+      totalTimeTillLastOut: 0,
+      totalTimeAfterLastIn: 0,
+      currentDate: new Date()
+    },
+    userData
+  ),
 
   getters: {
     swipeErrorCount: state => {
@@ -64,13 +78,22 @@ const store = new Vuex.Store({
     sessions: (state, sessions) => {
       if (Array.isArray(sessions)) {
         state.sessions = sessions;
-        localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(sessions));
+        userData.sessions = sessions;
+        saveUserData();
       }
     },
 
     totalTimeAfterLastIn: (state) => {
       const { totalTimeTillLastOut, lastInSwipe } = state;
       state.totalTimeAfterLastIn = onTick(totalTimeTillLastOut, lastInSwipe);
+    },
+
+    appVisible: (state, newFlag) => {
+      if (typeof newFlag === 'boolean') {
+        state.appVisible = newFlag;
+        userData.appVisible = newFlag;
+        saveUserData();
+      }
     }
   },
 
@@ -101,6 +124,10 @@ const store = new Vuex.Store({
 
     deleteSession({ state, commit }, index) {
       commit('sessions', state.sessions.filter((s, i) => i !== index));
+    },
+
+    setVisibility({ state, commit }, flag) {
+      commit('appVisible', flag);
     }
   }
 });
