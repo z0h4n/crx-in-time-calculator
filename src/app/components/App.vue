@@ -40,7 +40,6 @@ import TimeDisplay from "Components/TimeDisplay.vue";
 import DatePicker from "Components/DatePicker.vue";
 import Sessions from "Components/Sessions.vue";
 import Navbar from "Components/Navbar.vue";
-import ticker from "Services/ticker";
 
 export default {
   components: {
@@ -69,12 +68,6 @@ export default {
     isLoading() {
       return this.$store.state.isLoading;
     },
-    swipes() {
-      return this.$store.state.swipes;
-    },
-    lastInSwipe() {
-      return this.$store.state.lastInSwipe;
-    },
     appVisible() {
       return this.$store.state.appVisible;
     },
@@ -84,10 +77,6 @@ export default {
   },
 
   methods: {
-    onTick() {
-      this.$store.commit("totalTimeAfterLastIn");
-    },
-
     onResize() {
       this.$root.greythrTopNav.style.top = `${this.$refs.app.offsetHeight}px`;
       this.$root.greythrContainer.style.marginTop = `${this.$refs.app.offsetHeight}px`;
@@ -95,14 +84,6 @@ export default {
   },
 
   watch: {
-    swipes() {
-      if (this.lastInSwipe) {
-        ticker.subscribe(this.onTick);
-      } else {
-        ticker.unsubscribe(this.onTick);
-      }
-    },
-
     appVisible() {
       this.$nextTick(this.onResize);
     }

@@ -13,7 +13,7 @@
             :segment-height="10"
             :rounded="false"
           />
-          <TimeDisplaySeperator v-else class="padding-left-10" :key="i"/>
+          <TimeDisplaySeperator :show="blinkFlag" v-else class="padding-left-10" :key="i" />
         </div>
       </template>
     </div>
@@ -31,13 +31,35 @@ export default {
 
   data() {
     return {
-      onColor: "hsl(0, 0%, 21%)"
+      onColor: "hsl(0, 0%, 21%)",
+      blinkFlag: true
     };
+  },
+
+  mounted() {
+    const halfTick = () => {
+      this.blinkFlag = !this.blinkFlag;
+      setTimeout(halfTick, 500);
+    };
+
+    halfTick();
   },
 
   computed: {
     totalTimeAfterLastIn() {
       return this.msecsToHHMMSS(this.$store.state.totalTimeAfterLastIn);
+    }
+  },
+
+  methods: {
+    
+  },
+
+  watch: {
+    blinkFlag(isVisible) {
+      if (isVisible) {
+        this.$store.commit("totalTimeAfterLastIn");
+      }
     }
   }
 };

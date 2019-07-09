@@ -1,6 +1,6 @@
 {
   "name": "crx-in-time-calculator",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "Vue based Google Chrome Extension for <company_name_goes_here>.greythr.com for calculating office hours in realtime",
   "main": "index.js",
   "scripts": {

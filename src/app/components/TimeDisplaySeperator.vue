@@ -1,42 +1,32 @@
 <template>
-  <div class="seperator-container" :style="{visibility: this.hide ? 'hidden' : 'visible'}">
-    <div class="seperator-dot"/>
-    <div class="gap"/>
-    <div class="seperator-dot"/>
+  <div class="seperator-container" :style="style">
+    <div class="seperator-dot" />
+    <div class="gap" />
+    <div class="seperator-dot" />
   </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      blinkInterval: null,
-      hide: false
-    };
-  },
-
-  computed: {
-    swipes() {
-      return this.$store.state.swipes;
-    },
-    isLastSwipeIn() {
-      return (
-        this.swipes.length &&
-        this.swipes[this.swipes.length - 1].inoutindicator === 1
-      );
+  props: {
+    show: {
+      required: true,
+      type: Boolean
     }
   },
 
-  watch: {
-    isLastSwipeIn(isIn) {
-      if (isIn) {
-        this.blinkInterval = setInterval(() => {
-          this.hide = !this.hide;
-        }, 500);
-      } else {
-        clearInterval(this.blinkInterval);
-        this.hide = false;
-      }
+  computed: {
+    lastInSwipe() {
+      return this.$store.state.lastInSwipe;
+    },
+    style() {
+      return {
+        visibility: !this.lastInSwipe
+          ? "visible"
+          : this.show
+          ? "visible"
+          : "hidden"
+      };
     }
   }
 };
