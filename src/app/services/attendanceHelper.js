@@ -40,7 +40,7 @@ function extendSwipes(swipes = []) {
     swipe.dateObject = new Date(swipe.punchdatetime);
     swipe.errorMsg = swipe.dirtyflag
       ? ERROR_MESSAGES.systemGenerated
-      : i !== 0 && swipe.inoutindicator === swipes[i - 1].inoutindicator
+      : i !== 0 && swipe.inoutindicator === swipes[i - 1].inoutindicator && !swipes[i - 1].dirtyflag
         ? ERROR_MESSAGES.improperSequence
         : '';
     return swipe;

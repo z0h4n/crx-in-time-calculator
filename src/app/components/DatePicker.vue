@@ -7,11 +7,6 @@
           date.toDateString()
           }}
         </span>
-        <b-tag
-          v-if="swipeErrorCount"
-          class="errors"
-          type="is-danger"
-        >{{swipeErrorCount}} swipe errors</b-tag>
       </button>
     </div>
 

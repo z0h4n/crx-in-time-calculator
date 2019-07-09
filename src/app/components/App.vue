@@ -11,6 +11,11 @@
             <b-tab-item>
               <template slot="header">
                 <span class="is-size-6">Swipes</span>
+                <b-tag
+                  v-if="swipeErrorCount"
+                  class="errors"
+                  type="is-danger"
+                >{{`${swipeErrorCount} Error${swipeErrorCount > 1 ? 's': ''}`}}</b-tag>
               </template>
               <Swipes />
             </b-tab-item>
@@ -72,6 +77,9 @@ export default {
     },
     appVisible() {
       return this.$store.state.appVisible;
+    },
+    swipeErrorCount() {
+      return this.$store.getters.swipeErrorCount;
     }
   },
 
@@ -143,5 +151,11 @@ export default {
 
 .footer {
   height: 10px;
+}
+
+.errors {
+  height: 1.5em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
 }
 </style>
