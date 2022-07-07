@@ -28,7 +28,7 @@
   "dependencies": {
     "buefy": "^0.7.0",
     "lodash.get": "^4.4.2",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "vue": "^2.5.17",
     "vue-seven-segment-display": "^1.1.0",
     "vuex": "^3.0.1"
